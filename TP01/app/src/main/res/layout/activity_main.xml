@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/lastTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TP_01 \n Menu Principal"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints,ButtonStyle">
+
+        <Button
+            android:id="@+id/goToFrontCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camara Frontal"
+            tools:layout_editor_absoluteX="299dp"
+            tools:layout_editor_absoluteY="181dp" />
+
+        <Button
+            android:id="@+id/goToTorch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pantalla de la Linterna"
+            tools:layout_editor_absoluteX="112dp"
+            tools:layout_editor_absoluteY="209dp" />
+
+        <Button
+            android:id="@+id/goToMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pantalla de GPS"
+            tools:layout_editor_absoluteX="131dp"
+            tools:layout_editor_absoluteY="325dp" />
+
+        <Button
+            android:id="@+id/goToRearCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camara Tracera"
+            tools:layout_editor_absoluteX="296dp"
+            tools:layout_editor_absoluteY="327dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/exitApp"
+        android:layout_width="126dp"
+        android:layout_height="51dp"
+        android:text="Salir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="HardcodedText,MissingConstraints,ButtonStyle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
