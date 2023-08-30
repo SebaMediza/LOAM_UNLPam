@@ -20,6 +20,19 @@ class MainActivity : AppCompatActivity() {
             val intento = Intent(this, TorchControl::class.java)
             startActivity(intento)
         }
+        goToGPS.setOnClickListener{
+            val intento = Intent(this, GPSControl::class.java)
+            startActivity(intento)
+        }
+        goToFrontCamera.setOnClickListener{
+            val intento = Intent(this, FrontCameraControl::class.java)
+            startActivity(intento)
+        }
+        goToRearCamera.setOnClickListener{
+            val intento = Intent(this, RearCameraControl::class.java)
+            startActivity(intento)
+        }
+
 
         exitButton.setOnClickListener{
             finishAffinity()

@@ -31,14 +31,6 @@
         tools:ignore="HardcodedText,MissingConstraints,ButtonStyle">
 
         <Button
-            android:id="@+id/goToFrontCamera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Camara Frontal"
-            tools:layout_editor_absoluteX="299dp"
-            tools:layout_editor_absoluteY="181dp" />
-
-        <Button
             android:id="@+id/goToTorch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,6 +45,14 @@
             android:text="Pantalla de GPS"
             tools:layout_editor_absoluteX="131dp"
             tools:layout_editor_absoluteY="325dp" />
+
+        <Button
+            android:id="@+id/goToFrontCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camara Frontal"
+            tools:layout_editor_absoluteX="299dp"
+            tools:layout_editor_absoluteY="181dp" />
 
         <Button
             android:id="@+id/goToRearCamera"
