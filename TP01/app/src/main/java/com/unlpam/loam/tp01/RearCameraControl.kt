@@ -30,7 +30,7 @@ class RearCameraControl : AppCompatActivity() {
     lateinit var textureView: TextureView
     lateinit var cameraCaptureSession: CameraCaptureSession
     lateinit var cameraDevice: CameraDevice
-    //lateinit var captureRequest: CaptureRequest
+    lateinit var captureRequest: CaptureRequest
     lateinit var imageReader: ImageReader
 
 
@@ -45,9 +45,6 @@ class RearCameraControl : AppCompatActivity() {
         handlerThread = HandlerThread("videoThread")
         handlerThread.start()
         handler = Handler(handlerThread.looper)
-
-
-
         textureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
             override fun onSurfaceTextureAvailable(p0: SurfaceTexture, p1: Int, p2: Int) {
                 openCamera()
@@ -59,20 +56,27 @@ class RearCameraControl : AppCompatActivity() {
             override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {}
         }
 
-
         imageReader = ImageReader.newInstance(720, 1280, ImageFormat.JPEG, 1)
-        imageReader.setOnImageAvailableListener({ p0 ->
-            val image = p0?.acquireLatestImage()
-            val buffer = image!!.planes[0].buffer
-            val bytes = ByteArray(buffer.remaining())
-            buffer.get(bytes)
-            val file = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "img.jpeg")
-            val opStream = FileOutputStream(file)
-            opStream.write(bytes)
-            opStream.close()
-            image.close()
-            Toast.makeText(this@RearCameraControl, "image capture", Toast.LENGTH_SHORT).show()
-        }, handler)
+        imageReader.setOnImageAvailableListener(object: ImageReader.OnImageAvailableListener{
+            override fun onImageAvailable(p0: ImageReader?) {
+                val image = p0?.acquireLatestImage()
+                val buffer = image!!.planes[0].buffer
+                val bytes = ByteArray(buffer.remaining())
+                buffer.get(bytes)
+                val file = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "img.jpeg")
+                val opStream = FileOutputStream(file)
+                opStream.write(bytes)
+                opStream.close()
+                image.close()
+                Toast.makeText(this@RearCameraControl,"image capture", Toast.LENGTH_SHORT).show()
+            }
+        },handler)
+        findViewById<Button>(R.id.captureButton).apply {
+            capReq = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+            capReq.addTarget(imageReader.surface)
+            cameraCaptureSession.capture(capReq.build(),null,null)
+        }
+
         val volver: Button = findViewById(R.id.goToMainMenuRearCamera)
         volver.setOnClickListener {
             cameraDevice.close()
@@ -82,16 +86,13 @@ class RearCameraControl : AppCompatActivity() {
     }
     @SuppressLint("MissingPermission")
     fun openCamera() {
-        cameraManager.openCamera(
-            cameraManager.cameraIdList[0],
-            object : CameraDevice.StateCallback() {
+        cameraManager.openCamera(cameraManager.cameraIdList[0], object : CameraDevice.StateCallback() {
                 override fun onOpened(p0: CameraDevice) {
                     cameraDevice = p0
                     capReq = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
                     val surface = Surface(textureView.surfaceTexture)
                     capReq.addTarget(surface)
-                    cameraDevice.createCaptureSession(
-                        listOf(surface, imageReader.surface),
+                    cameraDevice.createCaptureSession(listOf(surface, imageReader.surface),
                         object : CameraCaptureSession.StateCallback() {
                             override fun onConfigured(p0: CameraCaptureSession) {
                                 cameraCaptureSession = p0
@@ -109,7 +110,6 @@ class RearCameraControl : AppCompatActivity() {
             },
             handler)
     }
-
     private fun getPermission() {
         val permissionList = mutableListOf<String>()
         if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
