@@ -66,8 +66,8 @@ class RearCameraControl : AppCompatActivity() {
                 val file = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "img.jpeg")
                 val opStream = FileOutputStream(file)
                 opStream.write(bytes)
-                opStream.close()
-                image.close()
+//                opStream.close()
+//                image.close()
                 Toast.makeText(this@RearCameraControl,"image capture", Toast.LENGTH_SHORT).show()
             }
         },handler)

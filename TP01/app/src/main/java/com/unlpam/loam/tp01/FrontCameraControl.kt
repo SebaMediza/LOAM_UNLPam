@@ -75,6 +75,11 @@ class FrontCameraControl : AppCompatActivity() {
             image.close()
             Toast.makeText(this@FrontCameraControl, "image capture", Toast.LENGTH_SHORT).show()
         },handler)
+        findViewById<Button>(R.id.captureButtonFrontCamera).apply {
+            capReq = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+            capReq.addTarget(imageReader.surface)
+            cameraCaptureSession.capture(capReq.build(),null,null)
+        }
         //preguntar porque me da error si no le agrego el @SuppressLint("MissingInflatedId") arriba
         //dice que no existe boton con id volverCF en camara frontal
         val volver:Button = findViewById(/* id = */ R.id.goToMainMenuFrontCamera)
