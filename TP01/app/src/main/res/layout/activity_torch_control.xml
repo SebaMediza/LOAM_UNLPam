@@ -39,5 +39,16 @@
         app:layout_constraintBottom_toTopOf="@+id/goToMainMenuTorch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainTextView"
+        app:layout_constraintVertical_bias="0.661" />
+
+    <Button
+        android:id="@+id/permissionTorch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedir Permisos de Linterna"
+        app:layout_constraintBottom_toTopOf="@+id/toggleTorch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
