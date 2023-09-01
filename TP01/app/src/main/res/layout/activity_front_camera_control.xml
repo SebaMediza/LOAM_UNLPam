@@ -7,7 +7,7 @@
     tools:context=".FrontCameraControl">
 
     <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinderRearCamera"
+        android:id="@+id/viewFinderFrontCamera"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,12 +18,12 @@
     </androidx.camera.view.PreviewView>
 
     <Button
-        android:id="@+id/btnTakePicRearCamera"
+        android:id="@+id/btnTakePicFrontCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Take Picture"
-        app:layout_constraintBottom_toBottomOf="@+id/viewFinderRearCamera"
+        app:layout_constraintBottom_toBottomOf="@+id/viewFinderFrontCamera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
