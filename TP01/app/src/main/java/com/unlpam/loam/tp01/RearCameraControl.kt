@@ -1,134 +1,115 @@
 package com.unlpam.loam.tp01
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.ImageFormat
-import android.graphics.SurfaceTexture
-import android.hardware.camera2.CameraCaptureSession
-import android.hardware.camera2.CameraDevice
-import android.hardware.camera2.CameraManager
-import android.hardware.camera2.CaptureRequest
-import android.media.ImageReader
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
 import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.HandlerThread
-import android.view.Surface
-import android.view.TextureView
+import android.util.Log
 import android.widget.Toast
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.unlpam.loam.tp01.databinding.ActivityRearCameraControlBinding
 import java.io.File
-import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class RearCameraControl : AppCompatActivity() {
-    lateinit var capReq: CaptureRequest.Builder
-    lateinit var handler: Handler
-    private lateinit var handlerThread: HandlerThread
-    private lateinit var cameraManager: CameraManager
-    lateinit var textureView: TextureView
-    lateinit var cameraCaptureSession: CameraCaptureSession
-    lateinit var cameraDevice: CameraDevice
-    lateinit var captureRequest: CaptureRequest
-    lateinit var imageReader: ImageReader
 
-
+    private lateinit var binding: ActivityRearCameraControlBinding
+    private var imageCapture: ImageCapture?=null
+    private lateinit var outputDirectory: File
+    private lateinit var cameraExecutor: ExecutorService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rear_camera_control)
+        binding = ActivityRearCameraControlBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        outputDirectory = getOutputDirectory()
+        cameraExecutor = Executors.newSingleThreadExecutor()
 
-        getPermission()
-
-        textureView = findViewById(R.id.textureView)
-        cameraManager = getSystemService(CAMERA_SERVICE) as CameraManager
-        handlerThread = HandlerThread("videoThread")
-        handlerThread.start()
-        handler = Handler(handlerThread.looper)
-        textureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
-            override fun onSurfaceTextureAvailable(p0: SurfaceTexture, p1: Int, p2: Int) {
-                openCamera()
-            }
-            override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture, p1: Int, p2: Int) {}
-            override fun onSurfaceTextureDestroyed(p0: SurfaceTexture): Boolean {
-                return false
-            }
-            override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {}
+        if (allPermissionGranted()){
+//            Toast.makeText(this,"We Have Permission", Toast.LENGTH_SHORT).show()
+            startCamera()
+        }else{
+            ActivityCompat.requestPermissions(this, Constants.REQUIRED_PERMITIONS, Constants.REQUEST_CODE_PERMISSIONS)
         }
-
-        imageReader = ImageReader.newInstance(720, 1280, ImageFormat.JPEG, 1)
-        imageReader.setOnImageAvailableListener(object: ImageReader.OnImageAvailableListener{
-            override fun onImageAvailable(p0: ImageReader?) {
-                val image = p0?.acquireLatestImage()
-                val buffer = image!!.planes[0].buffer
-                val bytes = ByteArray(buffer.remaining())
-                buffer.get(bytes)
-                val file = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "img.jpeg")
-                val opStream = FileOutputStream(file)
-                opStream.write(bytes)
-//                opStream.close()
-//                image.close()
-                Toast.makeText(this@RearCameraControl,"image capture", Toast.LENGTH_SHORT).show()
-            }
-        },handler)
-        findViewById<Button>(R.id.captureButton).apply {
-            capReq = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
-            capReq.addTarget(imageReader.surface)
-            cameraCaptureSession.capture(capReq.build(),null,null)
-        }
-
-        val volver: Button = findViewById(R.id.goToMainMenuRearCamera)
-        volver.setOnClickListener {
-            cameraDevice.close()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        binding.btnTakePicRearCamera.setOnClickListener{
+            takePhoto()
         }
     }
-    @SuppressLint("MissingPermission")
-    fun openCamera() {
-        cameraManager.openCamera(cameraManager.cameraIdList[0], object : CameraDevice.StateCallback() {
-                override fun onOpened(p0: CameraDevice) {
-                    cameraDevice = p0
-                    capReq = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
-                    val surface = Surface(textureView.surfaceTexture)
-                    capReq.addTarget(surface)
-                    cameraDevice.createCaptureSession(listOf(surface, imageReader.surface),
-                        object : CameraCaptureSession.StateCallback() {
-                            override fun onConfigured(p0: CameraCaptureSession) {
-                                cameraCaptureSession = p0
-                                cameraCaptureSession.setRepeatingRequest(capReq.build(), null, null)
-                            }
-                            override fun onConfigureFailed(p0: CameraCaptureSession) {}
-                        },
-                        handler
-                    )
+
+    private fun getOutputDirectory(): File{
+        val mediaDir = externalMediaDirs.firstOrNull()?.let{mFile->
+            File(mFile, resources.getString(R.string.app_name).apply{
+                mFile.mkdirs()
+            })
+        }
+        return if (mediaDir != null && mediaDir.exists())
+            mediaDir else filesDir
+    }
+
+    private fun takePhoto(){
+        val imageCapture = imageCapture ?: return
+        val photoFile = File(outputDirectory, SimpleDateFormat(Constants.FILE_NAME_FORMAT, Locale.getDefault()).format(System.currentTimeMillis()) + ".jpg")
+        val outputOption = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        imageCapture.takePicture(outputOption, ContextCompat.getMainExecutor(this),
+            object: ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    val savedUri = Uri.fromFile(photoFile)
+                    val msg = "Photo Saved"
+                    Toast.makeText(this@RearCameraControl,"$msg $savedUri", Toast.LENGTH_LONG).show()
                 }
-                override fun onDisconnected(p0: CameraDevice) {}
-                override fun onError(p0: CameraDevice, p1: Int) {
-                    Toast.makeText(this@RearCameraControl, "La camara no funciona correctamente", Toast.LENGTH_SHORT).show()
+
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e(Constants.TAG,"${exception.message}", exception)
                 }
-            },
-            handler)
-    }
-    private fun getPermission() {
-        val permissionList = mutableListOf<String>()
-        if (checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-            permissionList.add(android.Manifest.permission.CAMERA)
-        if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            permissionList.add((android.Manifest.permission.READ_EXTERNAL_STORAGE))
-        if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        if (permissionList.size > 0) {
-            requestPermissions(permissionList.toTypedArray(), 101)
-        }
+            })
     }
 
+    private fun startCamera(){
+        val cameraProviderFeature = ProcessCameraProvider.getInstance(this)
+        cameraProviderFeature.addListener({
+            val cameraProvider: ProcessCameraProvider = cameraProviderFeature.get()
+            val preview = Preview.Builder().build().also {mPreview ->
+                mPreview.setSurfaceProvider(binding.viewFinderRearCamera.surfaceProvider)
+            }
+            imageCapture = ImageCapture.Builder().build()
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            try{
+                cameraProvider.unbindAll()
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
+            }catch (e: Exception){
+                Log.d(Constants.TAG, "Fail to Start Camera", e)
+            }
+        }, ContextCompat.getMainExecutor(this))
+    }
+
+    @SuppressLint("MissingSuperCall")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        grantResults.forEach {
-            if (it != PackageManager.PERMISSION_GRANTED) {
-                getPermission()
+        if(requestCode == Constants.REQUEST_CODE_PERMISSIONS){
+            if(allPermissionGranted()){
+                startCamera()
+            }else{
+                Toast.makeText(this,"Permissions not Granted by the User.", Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
+    }
+
+    private fun allPermissionGranted() =
+        Constants.REQUIRED_PERMITIONS.all{
+            ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+        }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
     }
 }
