@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
@@ -25,17 +26,15 @@ class RearCameraControl : AppCompatActivity() {
 
     private lateinit var binding: ActivityRearCameraControlBinding
     private var imageCapture: ImageCapture?=null
-    private lateinit var outputDirectory: File
+    private var outputDirectory: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
     private lateinit var cameraExecutor: ExecutorService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRearCameraControlBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         if (allPermissionGranted()){
-//            Toast.makeText(this,"We Have Permission", Toast.LENGTH_SHORT).show()
             startCamera()
         }else{
             ActivityCompat.requestPermissions(this, Constants.REQUIRED_PERMITIONS, Constants.REQUEST_CODE_PERMISSIONS)
@@ -44,17 +43,6 @@ class RearCameraControl : AppCompatActivity() {
             takePhoto()
         }
     }
-
-    private fun getOutputDirectory(): File{
-        val mediaDir = externalMediaDirs.firstOrNull()?.let{mFile->
-            File(mFile, resources.getString(R.string.app_name).apply{
-                mFile.mkdirs()
-            })
-        }
-        return if (mediaDir != null && mediaDir.exists())
-            mediaDir else filesDir
-    }
-
     private fun takePhoto(){
         val imageCapture = imageCapture ?: return
         val photoFile = File(outputDirectory, SimpleDateFormat(Constants.FILE_NAME_FORMAT, Locale.getDefault()).format(System.currentTimeMillis()) + ".jpg")
@@ -66,13 +54,11 @@ class RearCameraControl : AppCompatActivity() {
                     val msg = "Photo Saved"
                     Toast.makeText(this@RearCameraControl,"$msg $savedUri", Toast.LENGTH_LONG).show()
                 }
-
                 override fun onError(exception: ImageCaptureException) {
                     Log.e(Constants.TAG,"${exception.message}", exception)
                 }
             })
     }
-
     private fun startCamera(){
         val cameraProviderFeature = ProcessCameraProvider.getInstance(this)
         cameraProviderFeature.addListener({
@@ -90,7 +76,6 @@ class RearCameraControl : AppCompatActivity() {
             }
         }, ContextCompat.getMainExecutor(this))
     }
-
     @SuppressLint("MissingSuperCall")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if(requestCode == Constants.REQUEST_CODE_PERMISSIONS){
@@ -102,12 +87,10 @@ class RearCameraControl : AppCompatActivity() {
             }
         }
     }
-
     private fun allPermissionGranted() =
         Constants.REQUIRED_PERMITIONS.all{
             ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
         }
-
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
