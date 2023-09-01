@@ -6,40 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".GPSControl">
 
-    <TextView
-        android:id="@+id/mainTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Pagina de Control deL GPS"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/goToMainMenuGPS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Menu Principal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainTextView"
-        app:layout_constraintVertical_bias="0.938" />
-
-    <Switch
-        android:id="@+id/toggleTorch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="268dp"
-        android:checked="false"
-        android:text="Linterna OFF/ON"
-        app:layout_constraintBottom_toTopOf="@+id/goToMainMenuGPS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainTextView" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
