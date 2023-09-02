@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         val goToFrontCamera: Button = findViewById(R.id.goToFrontCamera)
         val goToRearCamera: Button = findViewById(R.id.goToRearCamera)
         val exitButton: Button = findViewById(R.id.exitApp)
+        val goToSound: Button = findViewById(R.id.goToSound)
 
         goToTorch.setOnClickListener{
             val intento = Intent(this, TorchControl::class.java)
@@ -32,7 +33,10 @@ class MainActivity : AppCompatActivity() {
             val intento = Intent(this, RearCameraControl::class.java)
             startActivity(intento)
         }
-
+        goToSound.setOnClickListener{
+            val intento = Intent(this, SoundControl::class.java)
+            startActivity(intento)
+        }
 
         exitButton.setOnClickListener{
             finishAffinity()
