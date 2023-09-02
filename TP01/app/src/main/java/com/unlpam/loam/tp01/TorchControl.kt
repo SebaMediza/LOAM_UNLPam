@@ -7,7 +7,6 @@ import android.hardware.camera2.CameraManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Switch
 import android.widget.Toast
 
 
@@ -20,17 +19,18 @@ class TorchControl : AppCompatActivity() {
 
         val goToMainMenu: Button = findViewById(R.id.goToMainMenuTorch)
         val cameraManager: CameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
-        val mySwitch: Switch = findViewById(R.id.toggleTorch)
-        val requestPermissionTorch: Button = findViewById(R.id.permissionTorch)
-
-        mySwitch.setOnCheckedChangeListener { _, isToggled ->
-            if (isToggled){
+        val onOff: Button = findViewById(R.id.onOffTorch)
+        var toggle = false
+        onOff.setOnClickListener{
+            if(!toggle){
+                toggle = true
                 try {
                     cameraManager.setTorchMode("0", true)
                 }catch (e: Exception){
-                    Toast.makeText(this@TorchControl, "Fallo al Activar el Flash", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@TorchControl, "Fallo al Activar el Flash, $e", Toast.LENGTH_SHORT).show()
                 }
             }else{
+                toggle = false
                 cameraManager.setTorchMode("0", false)
             }
         }
@@ -38,7 +38,5 @@ class TorchControl : AppCompatActivity() {
             val intento = Intent(this, MainActivity::class.java)
             startActivity(intento)
         }
-
-
     }
 }
