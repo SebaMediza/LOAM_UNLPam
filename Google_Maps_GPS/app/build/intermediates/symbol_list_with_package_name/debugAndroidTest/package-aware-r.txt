@@ -1,3 +1,0 @@
-com.unlpam.loam.google_maps_gps.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
