@@ -61,6 +61,14 @@
             android:text="Camara Tracera"
             tools:layout_editor_absoluteX="296dp"
             tools:layout_editor_absoluteY="327dp" />
+
+        <Button
+            android:id="@+id/goToSound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pantalla de Sonido"
+            tools:layout_editor_absoluteX="112dp"
+            tools:layout_editor_absoluteY="209dp" />
     </LinearLayout>
 
     <Button
