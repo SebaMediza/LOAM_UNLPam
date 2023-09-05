@@ -1,0 +1,140 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.unlpam.loam.google_maps_gps"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="25"
+9        android:targetSdkVersion="33" />
+10
+11    <!-- Include required permissions for Google Maps API to run. -->
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+12-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:23:22-76
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:24:5-67
+13-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:24:22-64
+14
+15    <uses-feature
+15-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:26:5-28:35
+16        android:glEsVersion="0x00020000"
+16-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:27:9-41
+17        android:required="true" />
+17-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:28:9-32
+18
+19    <queries>
+19-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:30:5-34:15
+20
+21        <!-- Needs to be explicitly declared on Android R+ -->
+22        <package android:name="com.google.android.apps.maps" />
+22-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:33:9-64
+22-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:33:18-61
+23    </queries>
+24
+25    <permission
+25-->[androidx.core:core:1.9.0] C:\Users\sebam\.gradle\caches\transforms-3\738147d0f85917708540e295877f94a3\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+26        android:name="com.unlpam.loam.google_maps_gps.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+26-->[androidx.core:core:1.9.0] C:\Users\sebam\.gradle\caches\transforms-3\738147d0f85917708540e295877f94a3\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+27        android:protectionLevel="signature" />
+27-->[androidx.core:core:1.9.0] C:\Users\sebam\.gradle\caches\transforms-3\738147d0f85917708540e295877f94a3\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+28
+29    <uses-permission android:name="com.unlpam.loam.google_maps_gps.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+29-->[androidx.core:core:1.9.0] C:\Users\sebam\.gradle\caches\transforms-3\738147d0f85917708540e295877f94a3\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+29-->[androidx.core:core:1.9.0] C:\Users\sebam\.gradle\caches\transforms-3\738147d0f85917708540e295877f94a3\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+30
+31    <application
+31-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:5:5-26:19
+32        android:allowBackup="true"
+32-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:6:9-35
+33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+33-->[androidx.core:core:1.9.0] C:\Users\sebam\.gradle\caches\transforms-3\738147d0f85917708540e295877f94a3\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+34        android:dataExtractionRules="@xml/data_extraction_rules"
+34-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:7:9-65
+35        android:debuggable="true"
+36        android:extractNativeLibs="false"
+37        android:fullBackupContent="@xml/backup_rules"
+37-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:8:9-54
+38        android:icon="@mipmap/ic_launcher"
+38-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:9:9-43
+39        android:label="@string/app_name"
+39-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:10:9-41
+40        android:roundIcon="@mipmap/ic_launcher_round"
+40-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:11:9-54
+41        android:supportsRtl="true"
+41-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:12:9-35
+42        android:testOnly="true"
+43        android:theme="@style/Theme.Google_Maps_GPS" >
+43-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:13:9-53
+44        <meta-data
+44-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:15:9-17:56
+45            android:name="com.google.android.geo.API_KEY"
+45-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:16:13-58
+46            android:value="@string/google_maps_name" />
+46-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:17:13-53
+47
+48        <activity
+48-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:18:9-25:20
+49            android:name="com.unlpam.loam.google_maps_gps.MainActivity"
+49-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:19:13-41
+50            android:exported="true" >
+50-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:20:13-36
+51            <intent-filter>
+51-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:21:13-24:29
+52                <action android:name="android.intent.action.MAIN" />
+52-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:22:17-69
+52-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:22:25-66
+53
+54                <category android:name="android.intent.category.LAUNCHER" />
+54-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:23:17-77
+54-->D:\Scripts\LOAM_UNLPam\Google_Maps_GPS\app\src\main\AndroidManifest.xml:23:27-74
+55            </intent-filter>
+56        </activity>
+57        <!-- Needs to be explicitly declared on P+ -->
+58        <uses-library
+58-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+59            android:name="org.apache.http.legacy"
+59-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+60            android:required="false" />
+60-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\sebam\.gradle\caches\transforms-3\121d9f5a4e903ee318a8f57e00a04a07\transformed\play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+61
+62        <activity
+62-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sebam\.gradle\caches\transforms-3\72cfbc7428b42cf8d4dfbd09a9987027\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+63            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+63-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sebam\.gradle\caches\transforms-3\72cfbc7428b42cf8d4dfbd09a9987027\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+64            android:exported="false"
+64-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sebam\.gradle\caches\transforms-3\72cfbc7428b42cf8d4dfbd09a9987027\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+65            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+65-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\sebam\.gradle\caches\transforms-3\72cfbc7428b42cf8d4dfbd09a9987027\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+66
+67        <meta-data
+67-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\sebam\.gradle\caches\transforms-3\5dd3ea063ca3e58b5901dad3ea595add\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+68            android:name="com.google.android.gms.version"
+68-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\sebam\.gradle\caches\transforms-3\5dd3ea063ca3e58b5901dad3ea595add\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+69            android:value="@integer/google_play_services_version" />
+69-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\sebam\.gradle\caches\transforms-3\5dd3ea063ca3e58b5901dad3ea595add\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+70
+71        <provider
+71-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sebam\.gradle\caches\transforms-3\3ffd57255e6f9966dfb3d4f8b250b487\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+72            android:name="androidx.startup.InitializationProvider"
+72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sebam\.gradle\caches\transforms-3\3ffd57255e6f9966dfb3d4f8b250b487\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+73            android:authorities="com.unlpam.loam.google_maps_gps.androidx-startup"
+73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sebam\.gradle\caches\transforms-3\3ffd57255e6f9966dfb3d4f8b250b487\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+74            android:exported="false" >
+74-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sebam\.gradle\caches\transforms-3\3ffd57255e6f9966dfb3d4f8b250b487\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+75            <meta-data
+75-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sebam\.gradle\caches\transforms-3\3ffd57255e6f9966dfb3d4f8b250b487\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+76                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+76-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sebam\.gradle\caches\transforms-3\3ffd57255e6f9966dfb3d4f8b250b487\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+77                android:value="androidx.startup" />
+77-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sebam\.gradle\caches\transforms-3\3ffd57255e6f9966dfb3d4f8b250b487\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+78            <meta-data
+78-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\sebam\.gradle\caches\transforms-3\2fedbf8c74c9edc50a1bd4976a1d5f3e\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+79                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+79-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\sebam\.gradle\caches\transforms-3\2fedbf8c74c9edc50a1bd4976a1d5f3e\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+80                android:value="androidx.startup" />
+80-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\sebam\.gradle\caches\transforms-3\2fedbf8c74c9edc50a1bd4976a1d5f3e\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+81        </provider>
+82    </application>
+83
+84</manifest>
