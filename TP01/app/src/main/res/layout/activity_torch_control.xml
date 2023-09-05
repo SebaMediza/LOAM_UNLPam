@@ -40,6 +40,5 @@
         app:layout_constraintBottom_toTopOf="@+id/goToMainMenuTorch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainTextView"
-        android:background="@drawable/color_selector"/>
+        app:layout_constraintTop_toBottomOf="@+id/mainTextView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
