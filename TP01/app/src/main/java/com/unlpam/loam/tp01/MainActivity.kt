@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Obtener referencias a botones en el diseño mediante sus IDs
         val goToTorch: Button = findViewById(R.id.goToTorch)
         val goToGPS: Button = findViewById(R.id.goToMap)
         val goToFrontCamera: Button = findViewById(R.id.goToFrontCamera)
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val exitButton: Button = findViewById(R.id.exitApp)
         val goToSound: Button = findViewById(R.id.goToSound)
 
+        // Configuración de click listeners para los botones
         goToTorch.setOnClickListener{
             val intento = Intent(this, TorchControl::class.java)
             startActivity(intento)
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             val intento = Intent(this, SoundControl::class.java)
             startActivity(intento)
         }
-
+        // Cuando se hace clic en el botón "exitButton", se finaliza la aplicación
         exitButton.setOnClickListener{
             finishAffinity()
         }
