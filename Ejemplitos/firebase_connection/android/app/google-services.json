@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "947152569948",
+    "firebase_url": "https://prueba-fwitter-default-rtdb.firebaseio.com",
+    "project_id": "prueba-fwitter",
+    "storage_bucket": "prueba-fwitter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947152569948:android:f38b8a75eefd01a7cbc899",
+        "android_client_info": {
+          "package_name": "com.example.firebase_connection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947152569948-0359omd40ko8intmb1tgh08f7i2m8med.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrWkiR8OtLBcumY20uJwqjZXbBPlO6qBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947152569948-0359omd40ko8intmb1tgh08f7i2m8med.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
