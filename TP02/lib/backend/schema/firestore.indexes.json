@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "fwitts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "post_user",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "time_posted",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}

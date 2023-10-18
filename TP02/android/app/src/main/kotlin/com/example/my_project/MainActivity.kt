@@ -1,0 +1,6 @@
+package com.loam.fwitterv2
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
