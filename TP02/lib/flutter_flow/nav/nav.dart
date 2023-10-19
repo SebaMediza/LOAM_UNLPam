@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_import
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -11,10 +9,10 @@ import '/backend/backend.dart';
 import '../../auth/base_auth_user_provider.dart';
 
 import '/index.dart';
-//import '/main.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-//import '/flutter_flow/lat_lng.dart';
-//import '/flutter_flow/place.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
 
@@ -81,13 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? MainWidget() : Auth4Widget(),
+          appStateNotifier.loggedIn ? NavBarPage() : EntrePageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? MainWidget() : Auth4Widget(),
+              appStateNotifier.loggedIn ? NavBarPage() : EntrePageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -97,32 +95,67 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'Auth4',
-          path: '/auth4',
-          builder: (context, params) => Auth4Widget(
+          name: 'entrePage',
+          path: '/entrePage',
+          builder: (context, params) => EntrePageWidget(
             uid: params.getParam('uid', ParamType.String),
           ),
         ),
         FFRoute(
           name: 'newPost',
           path: '/newPost',
-          builder: (context, params) => NewPostWidget(
-            uid: params.getParam('uid', ParamType.String),
-          ),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'newPost')
+              : NavBarPage(
+                  initialPage: 'newPost',
+                  page: NewPostWidget(
+                    uid: params.getParam('uid', ParamType.String),
+                  ),
+                ),
         ),
         FFRoute(
           name: 'profile',
           path: '/profile',
+          requireAuth: true,
           builder: (context, params) => ProfileWidget(
             uid: params.getParam('uid', ParamType.String),
           ),
         ),
         FFRoute(
-          name: 'main',
-          path: '/main',
-          builder: (context, params) => MainWidget(
+          name: 'home',
+          path: '/home',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'home')
+              : NavBarPage(
+                  initialPage: 'home',
+                  page: HomeWidget(
+                    uid: params.getParam('uid', ParamType.String),
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'proflie',
+          path: '/proflie',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'proflie')
+              : NavBarPage(
+                  initialPage: 'proflie',
+                  page: ProflieWidget(
+                    uid: params.getParam('uid', ParamType.String),
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'oneProfile',
+          path: '/oneProfile',
+          builder: (context, params) => OneProfileWidget(
             uid: params.getParam('uid', ParamType.String),
           ),
+        ),
+        FFRoute(
+          name: 'settings',
+          path: '/settings',
+          builder: (context, params) => SettingsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -289,7 +322,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/auth4';
+            return '/entrePage';
           }
           return null;
         },

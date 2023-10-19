@@ -1,4 +1,3 @@
-// ignore_for_file: unnecessary_import, unused_import
 import 'dart:async';
 
 import 'package:collection/collection.dart';
@@ -42,11 +41,6 @@ class FwittsRecord extends FirestoreRecord {
   int get numComments => _numComments ?? 0;
   bool hasNumComments() => _numComments != null;
 
-  // "num_votes" field.
-  int? _numVotes;
-  int get numVotes => _numVotes ?? 0;
-  bool hasNumVotes() => _numVotes != null;
-
   // "likes" field.
   int? _likes;
   int get likes => _likes ?? 0;
@@ -57,15 +51,20 @@ class FwittsRecord extends FirestoreRecord {
   String get postUser => _postUser ?? '';
   bool hasPostUser() => _postUser != null;
 
+  // "num_votes" field.
+  double? _numVotes;
+  double get numVotes => _numVotes ?? 0.0;
+  bool hasNumVotes() => _numVotes != null;
+
   void _initializeFields() {
     _postPhoto = snapshotData['post_photo'] as String?;
     _postTitle = snapshotData['post_title'] as String?;
     _postDescription = snapshotData['post_description'] as String?;
     _timePosted = snapshotData['time_posted'] as DateTime?;
     _numComments = castToType<int>(snapshotData['num_comments']);
-    _numVotes = castToType<int>(snapshotData['num_votes']);
     _likes = castToType<int>(snapshotData['likes']);
     _postUser = snapshotData['post_user'] as String?;
+    _numVotes = castToType<double>(snapshotData['num_votes']);
   }
 
   static CollectionReference get collection =>
@@ -107,9 +106,9 @@ Map<String, dynamic> createFwittsRecordData({
   String? postDescription,
   DateTime? timePosted,
   int? numComments,
-  int? numVotes,
   int? likes,
   String? postUser,
+  double? numVotes,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,9 +117,9 @@ Map<String, dynamic> createFwittsRecordData({
       'post_description': postDescription,
       'time_posted': timePosted,
       'num_comments': numComments,
-      'num_votes': numVotes,
       'likes': likes,
       'post_user': postUser,
+      'num_votes': numVotes,
     }.withoutNulls,
   );
 
@@ -137,9 +136,9 @@ class FwittsRecordDocumentEquality implements Equality<FwittsRecord> {
         e1?.postDescription == e2?.postDescription &&
         e1?.timePosted == e2?.timePosted &&
         e1?.numComments == e2?.numComments &&
-        e1?.numVotes == e2?.numVotes &&
         e1?.likes == e2?.likes &&
-        e1?.postUser == e2?.postUser;
+        e1?.postUser == e2?.postUser &&
+        e1?.numVotes == e2?.numVotes;
   }
 
   @override
@@ -149,9 +148,9 @@ class FwittsRecordDocumentEquality implements Equality<FwittsRecord> {
         e?.postDescription,
         e?.timePosted,
         e?.numComments,
-        e?.numVotes,
         e?.likes,
-        e?.postUser
+        e?.postUser,
+        e?.numVotes
       ]);
 
   @override

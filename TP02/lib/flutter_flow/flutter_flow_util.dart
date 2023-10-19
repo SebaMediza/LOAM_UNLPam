@@ -1,6 +1,3 @@
-
-// ignore_for_file: deprecated_member_use
-
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,12 +11,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
 
-//import 'lat_lng.dart';
+import 'lat_lng.dart';
 
 export 'keep_alive_wrapper.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 export 'uploaded_file.dart';
+export '../app_state.dart';
 export 'flutter_flow_model.dart';
 export 'dart:math' show min, max;
 export 'dart:typed_data' show Uint8List;
