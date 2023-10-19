@@ -1,3 +1,4 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field, unnecessary_null_comparison
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +88,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'fwitterV2',
       localizationsDelegates: [
         FFLocalizationsDelegate(),

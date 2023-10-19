@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart' show kIsWeb;

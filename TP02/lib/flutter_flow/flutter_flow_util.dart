@@ -1,3 +1,4 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field, deprecated_member_use
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';

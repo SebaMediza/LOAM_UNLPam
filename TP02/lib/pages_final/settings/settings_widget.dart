@@ -1,3 +1,4 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field, unnecessary_null_comparison
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -149,7 +150,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                     child: Text(
-                      settingsUsersRecord!.displayName,
+                      settingsUsersRecord.displayName,
                       textAlign: TextAlign.center,
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
@@ -164,7 +165,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Text(
-                      settingsUsersRecord!.email,
+                      settingsUsersRecord.email,
                       style: FlutterFlowTheme.of(context).titleSmall.override(
                             fontFamily: 'Plus Jakarta Sans',
                             color: Color(0xCCFFFFFF),
@@ -260,7 +261,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           ),
                                         ),
                                         Text(
-                                          settingsUsersRecord!.phoneNumber,
+                                          settingsUsersRecord.phoneNumber,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
@@ -381,18 +382,17 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               AlignmentDirectional(0.00, 0.00),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await settingsUsersRecord!
-                                                  .reference
+                                              await settingsUsersRecord.reference
                                                   .update(createUsersRecordData(
                                                 email:
-                                                    settingsUsersRecord?.email,
+                                                    settingsUsersRecord.email,
                                                 displayName: settingsUsersRecord
-                                                    ?.displayName,
+                                                    .displayName,
                                                 photoUrl: settingsUsersRecord
-                                                    ?.photoUrl,
-                                                uid: settingsUsersRecord?.uid,
+                                                    .photoUrl,
+                                                uid: settingsUsersRecord.uid,
                                                 createdTime: settingsUsersRecord
-                                                    ?.createdTime,
+                                                    .createdTime,
                                                 phoneNumber:
                                                     _model.textController.text,
                                               ));

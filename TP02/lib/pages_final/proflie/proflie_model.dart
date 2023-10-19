@@ -1,3 +1,4 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field, unnecessary_null_comparison
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';

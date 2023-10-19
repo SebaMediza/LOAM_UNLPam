@@ -1,3 +1,4 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 

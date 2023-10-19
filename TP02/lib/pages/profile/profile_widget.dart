@@ -1,3 +1,4 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -139,7 +140,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              containerUsersRecord?.uid,
+                              containerUsersRecord.uid,
                               '0',
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,

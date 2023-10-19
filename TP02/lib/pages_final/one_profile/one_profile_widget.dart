@@ -1,3 +1,4 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_field, unnecessary_null_comparison
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -155,7 +156,7 @@ class _OneProfileWidgetState extends State<OneProfileWidget> {
                                     ),
                                   ),
                                   Text(
-                                    columnUsersRecord!.displayName,
+                                    columnUsersRecord.displayName,
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -179,7 +180,7 @@ class _OneProfileWidgetState extends State<OneProfileWidget> {
                                   ),
                                   Text(
                                     dateTimeFormat('d/M/y',
-                                        columnUsersRecord!.createdTime!),
+                                        columnUsersRecord.createdTime!),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -280,8 +281,7 @@ class _OneProfileWidgetState extends State<OneProfileWidget> {
                                                             BorderRadius
                                                                 .circular(8.0),
                                                         child: Image.network(
-                                                          columnUsersRecord!
-                                                              .photoUrl,
+                                                          columnUsersRecord.photoUrl,
                                                           width: 30.0,
                                                           height: 30.0,
                                                           fit: BoxFit.cover,
