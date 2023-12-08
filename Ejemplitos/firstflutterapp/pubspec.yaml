@@ -108,13 +108,13 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-    - assets/images/
-    - assets/videos/
-    - assets/audios/
-    - assets/lottie_animations/
-    - assets/rive_animations/
-    - assets/pdfs/
+#  assets:
+#    - assets/images/
+#    - assets/videos/
+#    - assets/audios/
+#    - assets/lottie_animations/
+#    - assets/rive_animations/
+#    - assets/pdfs/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
